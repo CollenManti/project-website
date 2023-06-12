@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <link rel="stylesheet" href="style.css">
+  <title>Cart Page</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+   
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+  
+</head>
+<body>
+  
+  <h1>Cart</h1>
+ 
+
+  <div id="cartItems"></div>
+
+
+ <script>
+ var cart = localStorage.getItem('cart');
+  if (cart) {
+    cart = JSON.parse(cart);
+    var cartItemsDiv = document.getElementById('cartItems');
+    
+    if (cart.length === 0) {
+      cartItemsDiv.innerHTML = '<p>Your cart is empty.</p>';
+    } else {
+      for (var i = 0; i < cart.length; i++) {
+        var item = cart[i];
+        var itemDiv = document.createElement('div');
+        itemDiv.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <h2>${item.name}</h2>
+          <p>R${item.price}</p>
+          <button onclick="removeFromCart(${i})">Remove</button>
+        `;
+        cartItemsDiv.appendChild(itemDiv);
+      }
+    }
+  } else {
+    document.getElementById('cartItems').innerHTML = '<p>Your cart is empty.</p>';
+
+  }</script>
+  
+ <button><a href="login.php">CheckOut</a></button>
+
+  <footer class="section-p1">
+
+    <div class="col">
+    <img src="img/logo.png" alt="">
+    <h4>Contact</h4>
+    <p><strong>Address:</strong>Van Riebeek Road, EdenVale</p>
+    <p><strong>Phone:</strong>011 334 7732/ 011 334 8054</p>
+    <p><strong>Trading Hours:</strong>08:00am - 17:00pm, Mon - Sat</p>
+    
+    </div>
+    
+    <div class="CR">
+      <p>Copyright 2023, Spiral x Calcutta website</p>
+    </div>
+    
+    </footer>
+  <script src="script.js"></script>
+</body>
+</html>
